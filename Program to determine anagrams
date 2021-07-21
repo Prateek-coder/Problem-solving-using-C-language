@@ -4,20 +4,22 @@
 
 void main()
 {
-    char str1[10],str2[10];
+    char str1[10],str2[10];   //Two string variables
     int i=0,len,count=0;
+    
+    
     printf("Enter the first string:\n");
-    scanf("%s",str1);
+    scanf("%s",str1);       // firts string input
     printf("Enter the second string\n");
-    scanf("%s",str2);
+    scanf("%s",str2);       // second string input
     len = strlen(str1);
     
     if(strlen(str1)!=strlen(str2))
     {
-       printf("Not anagrams\n");
+       printf("Not anagrams\n");  // If length of both the strings do not match then they are not anagrams 
        exit(0);
     }
-    else
+    else         // If length matches 
     {
       while(str1[i]!='\0')
        {
@@ -26,12 +28,12 @@ void main()
              {
                 if(str1[i]==str2[j])
                 {
-                    count++;
+                    count++;    // For every character match the count will be incremented by one
                     break;
                 }
                  else if(str1[i]!=str2[j] && j==len)
                 {
-                    printf("Not anagram\n");
+                    printf("Not anagram\n");      // Exit the program if a character from one string is not present in another string
                     exit(0);
                 }
                 j++;
@@ -40,7 +42,7 @@ void main()
          }
     }
     if(len==count)
-    printf("Anagrams\n");
+    printf("Anagrams\n");   // If every character matches then both the strings are anagrams
     else
-    printf("Not anagrams\n");
+    printf("Not anagrams\n");    // else not anagrams
 }
