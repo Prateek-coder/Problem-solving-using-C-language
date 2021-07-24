@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void quicksort(int number[25],int first,int last)  // quicksort function declaration
+{
+    int i, j, pivot, temp;
+    if(first<last)    // cheack array has atleast 2 elements
+    {
+        pivot=first;   // initialize variables
+        i=first;
+        j=last;
+        while(i<j)
+        {
+            while(number[i]<=number[pivot] && i<last)
+            i++;
+            while(number[j]>number[pivot])
+            j--;
+            if(i<j)
+            {
+                temp=number[i];
+                number[i]=number[j];
+                number[j]=temp;
+            }
+        }
+    
+        temp=number[pivot];
+        number[pivot]=number[j];
+        number[j]=temp;
+        quicksort(number,first,j-1);
+        quicksort(number,j+1,last);
+    }
+}
+
+void main()
+{
+  int i, count, number[25];
+  
+  printf("Enter number of elements (Max=25): ");  // maximum elements in the array
+  scanf("%d",&count);
+  
+  printf("Enter %d elements into the array: ", count);  // read the elements from the user
+  
+  for(i=0;i<count;i++)  //iterate through the array
+  scanf("%d",&number[i]);
+  
+  quicksort(number,0,count-1);   // calling the quicksort function
+  
+  printf("The Sorted Order is: ");
+  for(i=0;i<count;i++)
+  printf(" %d",number[i]);
+  
+}
