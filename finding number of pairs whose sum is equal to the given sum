@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void main()
+{
+   int sum,size;
+   int total,count=0;
+   
+   printf("Enter the size of the array\n");  //takes the size of the array from the user
+   scanf("%d",&size);
+   
+   int array[size];   // Declares the array of the specified size
+   
+   printf("Enter %d elements into the array\n",size);
+   
+   for(int i=0;i<size;i++)
+   {
+   scanf("%d",&array[i]);    // Takes the elements of the array from the user
+   }
+   
+   printf("Enter the sum :\n");
+   scanf("%d",&sum);
+   
+   for(int i=0;i<size;i++)    // Checking combination of different numbers which form the given sum 
+   {
+       for(int j=i+1;j<size;j++)
+       {
+         total = array[i]+array[j];
+         if(total==sum)
+         {
+             count++;     // Increasing the count whenever we come accross the pair which fulfill the condition
+         }
+       }
+   }
+   printf("The number of pairs are: %d\n",count);   // Printing the number of pairs
+   
+}
