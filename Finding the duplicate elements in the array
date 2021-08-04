@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void main()
+{
+   int size;
+   
+   printf("Enter the size of the array\n");  //takes the size of the array from the user
+   scanf("%d",&size);
+   
+   int array[size];   // Declares the array of the specified size
+   
+   printf("Enter %d elements into the array\n",size);
+   
+   for(int i=0;i<size;i++)
+   {
+   scanf("%d",&array[i]);    // Takes the elements of the array from the user
+   }
+   
+   printf("The elemnts which repeat in the array are:\n");
+   for(int i=0;i<size;i++)
+   {
+       for(int j=i+1;j<size;j++)  // Checks if the selected element is present anywhere in the array
+       {
+           if(array[i]==array[j])
+           {
+            printf(" %d",array[i]);  // Prints the repeating element
+           }
+       }
+   }
+   
+}
