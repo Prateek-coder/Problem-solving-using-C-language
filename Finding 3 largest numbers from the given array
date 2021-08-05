@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void main()
+{
+    int size;
+    int first,second,third;
+    printf("Enter the size of the array:\n");
+    scanf("%d",&size);
+    
+    int array[size];   
+    
+    printf("Enter %d elements into the array:\n",size);
+    for(int i=0;i<size;i++)
+    {
+        scanf("%d",&array[i]);     //take the input of the array from the user
+    }
+    
+    first = second = third = array[0];
+    
+    for(int i=0;i<size;i++)
+    {
+        if(array[i]>first)
+        {
+            third = second;
+            second = first;
+            first = array[i];
+        }
+        else if(array[i]>second)
+        {
+            third = second;
+            second = array[i];
+        }
+        else if(array[i]>third)
+        {
+            third = array[i];
+        }
+    }
+    printf("The 3 largest numbers are:\n");
+    printf("%d %d %d",first,second,third);
+    
+}
