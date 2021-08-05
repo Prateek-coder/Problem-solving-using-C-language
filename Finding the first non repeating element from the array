@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h> 
+
+void firstNonRepeating(int arr[], int n)   // function which finds the non repeating element
+{
+    for (int i = 0; i < n; i++) {
+        int j;
+        for (j = 0; j < n; j++)      // Check wether the dublicate of the element exists
+            if (i != j && arr[i] == arr[j])
+                break;
+        if (j == n)    // If the element is not found then that is the non repeating element
+        {
+            printf("The first non-repeating element is :%d",arr[i]);
+            exit(0);
+        }
+    }
+}
+  
+
+void main()
+{
+    int size;
+    
+    printf("Enter the size of the array:\n");
+    scanf("%d",&size);
+    
+    int arr[size];   
+    
+    printf("Enter %d elements into the array:\n",size);
+    for(int i=0;i<size;i++)
+    {
+        scanf("%d",&arr[i]);     //take the input of the array from the user
+    }
+    
+    firstNonRepeating(arr, size);   // calling the function
+}
