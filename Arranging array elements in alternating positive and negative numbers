@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void main()
+{
+    int size;
+    int pos[5],p=0,neg[5],n=0;
+    int a=0,b=0;
+    
+    printf("Enter the number of elements in the array:\n");
+    scanf("%d",&size);
+    
+    int array[size];
+    
+    printf("Enter %d elements in the array:\n",size);
+
+    for(int i=0;i<size;i++)
+    {
+        scanf("%d",&array[i]);
+    }
+    
+    for(int i=0;i<size;i++)
+    {
+        if(array[i]<0)
+        {
+           pos[p] = array[i];
+           p++;
+        }
+        else if(array[i]>=0)
+        {
+            neg[n] = array[i];
+            n++;
+        }
+    }
+    
+    if(n==0 || p==0)
+    {
+        for(int i=0;i<size;i++)
+        {
+            printf(" %d",array[i]);
+        }
+        exit(0);
+    }
+    
+    for(int i=0;i<size;i++)
+    {
+        if((i%2)==0)
+        {
+           
+            if(a<=p)
+            {
+            array[i] = pos[a];
+            a++;
+            }
+            else if(a>p)
+            {
+               while(i<size)
+               {
+                   array[i] = neg[b];
+                   b++;
+               }
+               exit(0);
+            }
+            
+        }
+        else
+        {
+           
+            if(b<=n)
+            {
+                array[i] = neg[b];
+                b++;
+            }
+            else if(b>n)
+            {
+                while(i<size)
+               {
+                   array[i] = pos[a];
+                   a++;
+               }
+               exit(0);
+            }
+        }
+    }
+    for(int i=0;i<size;i++)
+    {
+        printf(" %d",array[i]);
+    }
+}
