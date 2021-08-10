@@ -1,0 +1,113 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+typedef struct node *NODE;
+
+NODE createnode()  //Node creatinf function
+{
+    NODE newnode;
+    newnode = (NODE)malloc(sizeof(struct node));
+    return newnode;
+}
+
+NODE insert(NODE first,int data)  // Inserting a node function
+{
+    NODE temp;
+    temp = createnode();
+    temp->next = first;
+    temp->data = data;
+    first = temp;
+}
+
+void display(NODE first)  //Display function
+{
+    NODE cur;
+    int pos = 1;
+    if(first==NULL)
+    {
+        printf("Nothing to diaplay\n");
+    }
+    else
+    {
+        cur = first;
+        while(cur!= NULL)
+        {
+            printf("\nThe cost %d item purchased is %d \n",pos,cur->data);
+            pos++;
+            cur = cur->next;
+        }
+    }
+}
+
+NODE delete(NODE first,int cost)  // Node deletion function
+{
+    NODE cur,prev;
+    cur = first;
+    prev = first;
+    if(first==NULL)
+    {
+        printf("No items to delete\n");
+        return(first);
+    }
+    if(first->data==cost)
+    {
+        first = first->next;
+        cur->next=NULL;
+        free(cur);
+        cur = first;
+        return(first);
+    }
+    while(cur!=NULL && cur->data!=cost)
+    {
+        prev = cur;
+        cur = cur->next;
+    }
+    if(cur==NULL)
+    printf("Item not found\n");
+    else
+    {
+        printf("Deleted item is %d",cost);
+        prev->next = cur->next;
+        free(cur);
+    }
+    return(first);
+    
+    
+}
+
+void main()
+{
+    int cost,choice;
+    NODE first = NULL;
+    
+    for(;;)     //Infinite for loop
+    {
+        printf("Enter the choice:\n");
+        printf("1.Purchase\t 2.Delete\t 3.Display\n");  //Take the choice of the user
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1: printf("Enter the cost of item:\n");  // Code to be executed when item is purchased
+                    scanf("%d",&cost);
+                    first = insert(first,cost);
+                    display(first);
+                    break;
+                    
+            case 2: printf("Enter the cost which you want to delete\n");  //Code to be executed when item is deleted
+                    scanf("%d",&cost);
+                    first = delete(first,cost);
+                    display(first);
+                    break;
+                    
+            case 3: display(first);   //Code to be executed to diplay the list
+                    break;
+            default: exit(0);        
+        }
+    }
+}
