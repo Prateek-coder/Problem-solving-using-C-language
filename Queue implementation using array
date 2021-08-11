@@ -1,0 +1,93 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int push(int rear,int size,int front);
+int pop(int front,int rear);
+void display(int array[],int rear,int front);
+
+int push(int rear,int size,int front)
+{
+   if(rear+1>=size)
+   {
+       printf("Queue is full\n");
+   }
+   else
+   {
+       if(front ==-1 && rear==-1)
+       {
+           rear = 0;
+       }
+       else
+       {
+           rear = rear + 1;
+       }
+   }
+   return(rear);
+}
+
+void display(int array[],int rear,int front)
+{
+    
+    if(rear==-1)
+    {
+        printf("Empty queue\n");
+    }
+    for(int i=front;i<=rear;i++)
+    {
+        printf(" %d",array[i]);
+    }
+    printf("\n");
+}
+
+int pop(int front,int rear)
+{
+   if(front==-1 || front>rear)
+   {
+       printf("Underflow\n");
+   }
+   else
+   {
+       front = front + 1;
+   }
+   return(front);
+}
+
+void main()
+{
+   
+    int size,rear = -1,front=0;
+    int choice,item;
+    
+    printf("Enter the maximum size of the queue:\n");
+    scanf("%d",&size);
+    
+    int array[size];
+    for(;;)
+    {
+    printf("Enter your choice:\n");
+    printf("1.Push \t2. pop \t3.display\n");
+    scanf("%d",&choice);
+  
+    
+    switch(choice)
+    {
+        case 1:printf("Enter the item:\n");
+               scanf("%d",&item);
+               rear = push(rear,size,front);
+               array[rear] = item;
+               display(array,rear,front);
+               
+               break;
+               
+        case 2:front = pop(front,rear);
+                      display(array,rear,front);
+               break;
+        case 3:display(array,rear,front);
+               break;
+        default:printf("Invalid input\n");
+                exit(0);
+    }
+    }
+    
+    
+}
